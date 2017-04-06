@@ -1,107 +1,92 @@
-create table Employee_T(
-EmployeeID              integer       not null,
-EmployeeName            char(20)      not null,
-EmployeeAddress         char(40),   --need to decide on size, and whethre or not to to split it.   
-DateOfBirth             date          not null,
-SocialInsurance         integer       not null,
-JobTitle                varchar(20),
-    --ArchivedTitles
-     --skills
-TypeofEmployee         char(1)        not null,   --shall be used to take note of type of employee     
+CREATE TABLE Employee_T(
+    EmployeeID              INTEGER         NOT NULL,
+    EmployeeName            VARCHAR(25)     NOT NULL,
+    EmployeeAddress         VARCHAR(30),
+    EmployeeSIN             VARCHAR(11),
+    EmployeeDateOfBirth     DATE,
+    EmployeeJobTitle        VARCHAR(30),
+        --ArchivedTitles
+        --skills
+    EmployeeType            CHAR(1)        NOT NULL,   --shall be used to take note of type of employee     
 
-constraint Employee_PK Primary key (EmployeeID)
-);
+CONSTRAINT Employee_Pk PRIMARY KEY (EmployeeID));
 
-create table Department_T (
-DepartmentID                          integer        not null,
-DepartmentName                        varchar2(20)   not null,
-DepartmentLocation                    varchar2(20),
-PhoneNumber                           varchar(15),
-DepartmentManager                     varchar(20),
+CREATE TABLE Department_T (
+    DepartmentID            INTEGER        NOT NULL,
+    DepartmentName          VARCHAR(25)    NOT NULL,
+    DepartmentLocation      VARCHAR(30),
+    DepartmentPhoneNumber   VARCHAR(15),
+    DepartmentManager       VARCHAR(25),
 
-constraint Department_PK Primary Key(DepartmentID)
+CONSTRAINT Department_Pk PRIMARY KEY(DepartmentID));
 
-);
+CREATE TABLE Project_T (
+    ProjectID            INTEGER          NOT NULL,
+    ProjectName          VARCHAR(25)      NOT NULL,
+    --{tasks{skills},type}
+    StartDate            DATE             NOT NULL,
+    FinishDate           DATE             NOT NULL,
+    ProjectManager       VARCHAR(25)      NOT NULL,   -- we need to take note whether this shall be compound attribute or not. first name and last name
 
-create table Project_T(
-ProjectID            integer          not null,
-ProjectName          varchar(10)      not null,
---{tasks{skills},type}
-StartDate            date             not null,
-FinishDate           date             not null,
-ProjectManager       varchar(20)      not null,   -- we need to take note whether this shall be compound attribute or not. first name and last name
+CONSTRAINT Project_Pk PRIMARY KEY(ProjectID));
 
-constraint Project_Pk Primary key(ProjectID)
-);
+CREATE TABLE Vendor_T(
+    VendorID        INTEGER             NOT NULL,
+    VendorName      VARCHAR2(30)        NOT NULL,
+    VendorAddress         VARCHAR2(30),
+    VendorEquipmentInfo   VARCHAR2(40),
 
-Create table Vendor_T(
-VendorID        integer          not null,
-VendorName      VARCHAR2(20)     not null,
-Address         VARCHAR2(30),
-EquipmentInfo   VARCHAR2(40),
+CONSTRAINT Vendor_Pk PRIMARY KEY(VendorID));
 
-constraint Vendor_PK Primary KEY(VendorID)
-);
+CREATE TABLE Equipment_T(
+    EquipmentID             INTEGER     NOT NULL,
+    EquipmentName           VARCHAR(30),
+    EquipmentDescription    VARCHAR(150),
 
-create table Equipment_T(
-EquipmentID            integer     not null,
-EquipmentName          varchar(20),
-Description            varchar(40),
-
-constraint Equipment_Pk Primary key(EquipmentID)
-
-);
-
+CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
 
 --we need to decide whether we even need this table or perhaps have this info derived from a query
---if we do keep the table then we have to realise all attributes will be foreign keys from other tables. which comes back to idea of having this a table
-Create table Project_Equipment_T (
+--if we do keep the table then we have to realise all attributes will be FOREIGN KEYs from other tables. which comes back to idea of having this a table
+CREATE TABLE Project_Equipment_T (
+    EquipmentID         INTEGER     NOT NULL,
+    ProjectID           INTEGER     NOT NULL,
+    EquipmentName       VARCHAR(30),
+    Description         VARCHAR(150),
 
-EquipmentID         integer     not null,
-ProjectID           char(8)     not null,
-EquipmentName       varchar(20),
-Description         varchar(40),
+CONSTRAINT Project_Equipment_Pk PRIMARY KEY(EquipmentID,ProjectID),
+CONSTRAINT Project_Equipment_Fk1 FOREIGN KEY(EquipmentID) REFERENCES Equipment_T(EquipmentID),
+CONSTRAINT Project_Equipment_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
-constraint Project_Equipment_PK Primary key(EquipmentID,ProjectID),
-constraint Project_Equipment_FK1 foreign key(EquipmentID) references Equipment_T(EquipmentID),
-constraint Project_Equipment_FK2 foreign key(ProjectID) references Project_T(ProjectID)
-);
+CREATE TABLE Salary_T(
+    EmployeeID              INTEGER     NOT NULL,
+    Salary                  NUMERIC(7,4),
+    Bonus                   NUMERIC(7,4),  --calculated field
+    HealthCoverage          NUMERIC(7,4),
 
-create table Salaried_T(
-EmployeeID              integer     not null,  -- created to allow for merge.. should be added to EER
-Salary                  number(6),
-Bonus                   number(6),          --calculated field
-HealthCoverage          number(6),
+CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
-constraint Salaried_FK  foreign key(EmployeeID) references Employee_T(EmployeeID)
-);
+CREATE TABLE Consultant_T(
+    EmployeeID      INTEGER         NOT NULL,
+    HourlyRate      NUMERIC(4, 4),
 
-create table Consultant_T(
-EmployeeID              integer  not null,  -- created to allow for merge.. should be added to EER
-HourlyRate,  -- we need to decide on datatype
+CONSTRAINT Consultant_FK  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
-constraint Consultant_FK  foreign key(EmployeeID) references Employee_T(EmployeeID)
-);
+/*Department_Vendor table has a composite PRIMARY KEY...... do we need this table.?????? */
+CREATE TABLE Department_Vendor_T(
+    DepartmentID        INTEGER   NOT NULL,
+    VendorID            INTEGER   NOT NULL,
 
-/*Department_Vendor table has a composite primary key...... do we need this table.?????? */
-create table Department_Vendor_T(
-
-DepartmentID        integer   not null,
-VendorID            char(8)   not null,
-
-constraint Department_Vendor_PK Primary key(DepartmentID,VendorID),
-constraint Department_Vendor_FK1 Foreign key(DepartmentID) REFERENCES Department_T(DepartmentID),
-constraint Department_Vendor_FK2 Foreign key(VendorID) REFERENCES Vendor_T(VendorID)
-
-);
+CONSTRAINT Department_Vendor_PK PRIMARY KEY(DepartmentID,VendorID),
+CONSTRAINT Department_Vendor_FK1 FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
+CONSTRAINT Department_Vendor_FK2 FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));
 
 
 
 /*
 COMMENTS
 *we need an attribute in salary table to record whether an individual has dependants, either a yes or no or numbers.
-*department_vendor table could be another query,instead we can have foreign key from the other table in Department table and In the Vendor table then draw a query from there
+*department_vendor table could be another query,instead we can have FOREIGN KEY from the other table in Department table and In the Vendor table then draw a query from there
 *Archived info should be based on a query which then translates to a "report"
 *lets add a timestap to the project to record changes/alterations to records
-*we need a foreign key for department in employee table so as to link employee to department
+*we need a FOREIGN KEY for department in employee table so as to link employee to department
 */
