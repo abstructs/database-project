@@ -1,5 +1,7 @@
 CREATE TABLE Employee_T(
     EmployeeID              INTEGER         NOT NULL,
+    DepartmentID            INTEGER         NOT NULL,
+    ProjectID               INTEGER,
     EmployeeName            VARCHAR(25)     NOT NULL,
     EmployeeAddress         VARCHAR(30),
     EmployeeSIN             VARCHAR(11),
@@ -9,7 +11,20 @@ CREATE TABLE Employee_T(
         --skills
     EmployeeType            CHAR(1)        NOT NULL,   --shall be used to take note of type of employee     
 
-CONSTRAINT Employee_Pk PRIMARY KEY (EmployeeID));
+CONSTRAINT Employee_Pk PRIMARY KEY(EmployeeID),
+CONSTRAINT Employee_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID)
+CONSTRAINT Employee_Fk1 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
+
+CREATE TABLE Dependents_T (
+    EmployeeID          INTEGER         NOT NULL,
+    DependentID         INTEGER         NOT NULL,
+    DependentName       VARCHAR(25)     NOT NULL,
+    DependentAddress    VARCHAR(30),
+    DependentBirthday   DATE,
+    DependentSIN        VARCHAR(11),
+
+CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID)
+CONSTRAINT Dependent_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Department_T (
     DepartmentID            INTEGER        NOT NULL,
@@ -45,6 +60,15 @@ CREATE TABLE Equipment_T(
 
 CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
 
+CREATE TABLE Client_T (
+    ClientID    INTEGER NOT NULL,
+    ClientCompany VARCHAR(30),
+    ClientAddress VARCHAR(30),
+    ClientPhoneNumber VARCHAR(15),
+    ClientSince DATE,
+    -- archive
+    CONSTRAINT Client_Pk PRIMARY KEY(ClientID));
+
 --we need to decide whether we even need this table or perhaps have this info derived from a query
 --if we do keep the table then we have to realise all attributes will be FOREIGN KEYs from other tables. which comes back to idea of having this a table
 CREATE TABLE Project_Equipment_T (
@@ -57,7 +81,7 @@ CONSTRAINT Project_Equipment_Pk PRIMARY KEY(EquipmentID,ProjectID),
 CONSTRAINT Project_Equipment_Fk1 FOREIGN KEY(EquipmentID) REFERENCES Equipment_T(EquipmentID),
 CONSTRAINT Project_Equipment_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
-CREATE TABLE Salary_T(
+CREATE TABLE Salaried_T(
     EmployeeID              INTEGER     NOT NULL,
     Salary                  NUMERIC(7,4),
     Bonus                   NUMERIC(7,4),  --calculated field
