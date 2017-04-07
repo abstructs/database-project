@@ -12,10 +12,10 @@ CREATE TABLE Employee_T(
     EmployeeType            CHAR(1)        NOT NULL,   --shall be used to take note of type of employee     
 
 CONSTRAINT Employee_Pk PRIMARY KEY(EmployeeID),
-CONSTRAINT Employee_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID)
-CONSTRAINT Employee_Fk1 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
+CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
+CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
-CREATE TABLE Dependents_T (
+CREATE TABLE Dependent_T (
     EmployeeID          INTEGER         NOT NULL,
     DependentID         INTEGER         NOT NULL,
     DependentName       VARCHAR(25)     NOT NULL,
@@ -23,8 +23,8 @@ CREATE TABLE Dependents_T (
     DependentBirthday   DATE,
     DependentSIN        VARCHAR(11),
 
-CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID)
-CONSTRAINT Dependent_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
+CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID),
+CONSTRAINT Employee_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Department_T (
     DepartmentID            INTEGER        NOT NULL,
@@ -34,6 +34,24 @@ CREATE TABLE Department_T (
     DepartmentManager       VARCHAR(25),
 
 CONSTRAINT Department_Pk PRIMARY KEY(DepartmentID));
+
+CREATE TABLE Task_T(
+    TaskID          INTEGER         NOT NULL,
+    ProjectID       INTEGER         NOT NULL,
+    TaskType        VARCHAR(30)     NOT NULL,
+    TaskDescription VARCHAR(150)    NOT NULL,
+
+CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
+CONSTRAINT Task_Pk PRIMARY KEY(TaskID));
+
+CREATE TABLE Skill_T (
+    SkillID             INTEGER         NOT NULL,
+    EmployeeID          INTEGER         NOT NULL,
+    SkillName           VARCHAR(25)     NOT NULL,
+    SkillDescription    VARCHAR(150)    NOT NULL,
+
+CONSTRAINT Employee_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID),
+CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 
 CREATE TABLE Project_T (
     ProjectID            INTEGER          NOT NULL,
@@ -46,8 +64,8 @@ CREATE TABLE Project_T (
 CONSTRAINT Project_Pk PRIMARY KEY(ProjectID));
 
 CREATE TABLE Vendor_T(
-    VendorID        INTEGER             NOT NULL,
-    VendorName      VARCHAR2(30)        NOT NULL,
+    VendorID              INTEGER             NOT NULL,
+    VendorName            VARCHAR2(30)        NOT NULL,
     VendorAddress         VARCHAR2(30),
     VendorEquipmentInfo   VARCHAR2(40),
 
@@ -77,9 +95,9 @@ CREATE TABLE Project_Equipment_T (
     EquipmentName       VARCHAR(30),
     Description         VARCHAR(150),
 
-CONSTRAINT Project_Equipment_Pk PRIMARY KEY(EquipmentID,ProjectID),
-CONSTRAINT Project_Equipment_Fk1 FOREIGN KEY(EquipmentID) REFERENCES Equipment_T(EquipmentID),
-CONSTRAINT Project_Equipment_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
+CONSTRAINT Project_Equipment_Pk PRIMARY KEY(EquipmentID, ProjectID),
+CONSTRAINT Equipment_Fk FOREIGN KEY(EquipmentID) REFERENCES Equipment_T(EquipmentID),
+CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
 CREATE TABLE Salaried_T(
     EmployeeID              INTEGER     NOT NULL,
@@ -93,16 +111,16 @@ CREATE TABLE Consultant_T(
     EmployeeID      INTEGER         NOT NULL,
     HourlyRate      NUMERIC(4, 4),
 
-CONSTRAINT Consultant_FK  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
+CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 /*Department_Vendor table has a composite PRIMARY KEY...... do we need this table.?????? */
 CREATE TABLE Department_Vendor_T(
     DepartmentID        INTEGER   NOT NULL,
     VendorID            INTEGER   NOT NULL,
 
-CONSTRAINT Department_Vendor_PK PRIMARY KEY(DepartmentID,VendorID),
-CONSTRAINT Department_Vendor_FK1 FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
-CONSTRAINT Department_Vendor_FK2 FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));
+CONSTRAINT Department_Vendor_Pk PRIMARY KEY(DepartmentID,VendorID),
+CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
+CONSTRAINT Vendor_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));
 
 
 
