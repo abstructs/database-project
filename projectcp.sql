@@ -96,7 +96,7 @@ CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 CREATE TABLE Project_T (
     ProjectID                       INTEGER          NOT NULL,
     EmployeeProjectManagerID        INTEGER          NOT NULL,
-    ProjectNumber                   CHAR(8)          NOT NULL,
+    ProjectNumberID                   CHAR(8)          NOT NULL,
     ProjectName                     VARCHAR(25)      NOT NULL,
     StartDate                       DATE             NOT NULL,
     FinishDate                      DATE             NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE Client_T (
     ClientNumber        CHAR(8)         NOT NULL,
     ClientCompany       VARCHAR(30)     NOT NULL,
     ClientAddress       VARCHAR(30)     NOT NULL,
-    ClientPerson        VARCHAR(25)     NOT NULL,
+    ClientContactPerson        VARCHAR(25)     NOT NULL,
     ClientSince         DATE,
     -- archive
 CONSTRAINT Client_Pk PRIMARY KEY(ClientID));
