@@ -93,20 +93,20 @@ VALUES (1, 1, "05-10-2017");
 INSERT INTO Task_T (TaskID, ProjectID, TaskType, TaskDescription, TaskStartDate, TaskEndDate)
 VALUES (1, 1, "Database Creation", "Write SQL scripts to create tables", "2016-05-15", "2016-08-15");
 
-INSERT INTO Task_Skill (TaskID, SkillID)
+INSERT INTO Task_Skill_T (TaskID, SkillID)
 VALUES (1, 1);
 
-INSERT INTO Employee_Task_T (EmployeeID, TaskID, EmployeeHoursWorked)
+INSERT INTO Employee_Task_T (EmployeeID, TaskID)
 VALUES (1, 1);
 
 -- Manage Database
 INSERT INTO Task_T (TaskID, ProjectID, TaskType, TaskDescription, TaskStartDate, TaskEndDate)
 VALUES (2, 1, "Database Management", "Database needs to be managed and ensure proper protocols are being used.", "2016-10-15", "2017-03-15");
 
-INSERT INTO Task_Skill (TaskID, SkillID)
+INSERT INTO Task_Skill_T (TaskID, SkillID)
 VALUES (2, 2);
 
-INSERT INTO Employee_Task_T (EmployeeID, TaskID, EmployeeHoursWorked)
+INSERT INTO Employee_Task_T (EmployeeID, TaskID)
 VALUES (2, 2);
 
 -- Create User Interface
@@ -114,7 +114,7 @@ VALUES (2, 2);
 INSERT INTO Task_T (TaskID, ProjectID, TaskType, TaskDescription, TaskStartDate, TaskEndDate)
 VALUES (3, 1, "Interface Creation", "From end development with Javascript for user experience.", "2016-11-15", "2017-01-15");
 
-INSERT INTO Task_Skill (TaskID, SkillID)
+INSERT INTO Task_Skill_T (TaskID, SkillID)
 VALUES (3, 3);
 
 INSERT INTO Employee_Task_T (EmployeeID, TaskID, EmployeeHoursWorked)
