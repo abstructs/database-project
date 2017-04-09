@@ -135,26 +135,13 @@ CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
 
 CREATE TABLE Client_T (
-    ClientID            INTEGER         NOT NULL    UNIQUE,
-    ClientNumberID        CHAR(8)       NOT NULL    UNIQUE,
-    ClientCompany       VARCHAR(30)     NOT NULL,
-    ClientAddress       VARCHAR(30)     NOT NULL,
+    ClientID                   INTEGER         NOT NULL    UNIQUE,
+    ClientNumberID             CHAR(8)         NOT NULL    UNIQUE,
+    ClientCompany              VARCHAR(30)     NOT NULL,
+    ClientAddress              VARCHAR(30)     NOT NULL,
     ClientContactPerson        VARCHAR(25)     NOT NULL,
-    ClientSince         DATE,
-    -- archive
+    ClientSince                DATE,
 CONSTRAINT Client_Pk PRIMARY KEY(ClientID));
-
---we need to decide whether we even need this table or perhaps have this info derived from a query
---if we do keep the table then we have to realise all attributes will be FOREIGN KEYs from other tables. which comes back to idea of having this a table
--- CREATE TABLE Project_Equipment_T ( 
---     EquipmentID         INTEGER     NOT NULL,
---     ProjectID           INTEGER     NOT NULL, -- Project can have many equipments
---     EquipmentName       VARCHAR(30),
---     Description         VARCHAR(150),
-
--- CONSTRAINT Project_Equipment_Pk PRIMARY KEY(EquipmentID, ProjectID),
--- CONSTRAINT Equipment_Fk FOREIGN KEY(EquipmentID) REFERENCES Equipment_T(EquipmentID),
--- CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
 CREATE TABLE Salaried_T(
     EmployeeID                     INTEGER        NOT NULL      UNIQUE,
@@ -167,7 +154,7 @@ CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID
 CREATE TABLE Consultant_T(
     EmployeeID                INTEGER         NOT NULL      UNIQUE,
     ConsultantHourlyRate      NUMERIC(4, 4)   NOT NULL,
-    ConsultantHoursWorked     INTEGER,      -- assumption 
+    ConsultantHoursWorked     INTEGER         NOT NULL,
 
 CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 

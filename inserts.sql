@@ -40,10 +40,10 @@ VALUES (2, 2);
 
 -- Bob Dylan
 INSERT INTO Employee_T (EmployeeID, DepartmentID, EmployeeNumberID, ProjectID, SkillID, EmployeeName, EmployeeAddress, EmployeeSIN, EmployeeDateOfBirth, EmployeeJobTitle, EmployeeType) 
-VALUES (3, 2, "12121212", 2, 3, "Bob Dylan", "77777777","77 University Ave", "1987-02-11", "UX Designer", "C");
+VALUES (3, 2, "12121212", 1, 3, "Bob Dylan", "77777777","77 University Ave", "1987-02-11", "UX Designer", "C");
 
 INSERT INTO Consultant_T (EmployeeID, ConsultantHourlyRate, ConsultantHoursWorked)
-VALUES (3, 47.00, 50);
+VALUES (3, 47.00, 0);
 
 INSERT INTO Job_Archive_T (EmployeeID, JobTitle, JobDate)
 VALUES (3, "UX Designer", "2016-01-05");
@@ -54,8 +54,33 @@ VALUES (3, "44444444", "User Experience", "User experience people create softwar
 INSERT INTO Employee_Skill_T (EmployeeID, SkillID)
 VALUES (3, 3);
 
--- Department
+-- William Lewis
+INSERT INTO Employee_T (EmployeeID, DepartmentID, EmployeeNumberID, ProjectID, SkillID, EmployeeName, EmployeeAddress, EmployeeSIN, EmployeeDateOfBirth, EmployeeJobTitle, EmployeeType) 
+VALUES (4, 2, "31313131", 2, 3, "William Lewis", "65656565", "33 Spadina Ave", "1983-02-11", "UX Designer", "S");
 
+INSERT INTO Salaried_T (EmployeeID, SalariedSalary, SalariedBonus, SalariedHealthCoverage)
+VALUES (4, 30000, 0, 2500);
+
+INSERT INTO Job_Archive_T (EmployeeID, JobTitle, JobDate)
+VALUES (4, "UX Designer", "2017-01-05");
+
+INSERT INTO Employee_Skill_T (EmployeeID, SkillID)
+VALUES (4, 3);
+
+-- Matsvei Chambers
+INSERT INTO Employee_T (EmployeeID, DepartmentID, EmployeeNumberID, ProjectID, SkillID, EmployeeName, EmployeeAddress, EmployeeSIN, EmployeeDateOfBirth, EmployeeJobTitle, EmployeeType) 
+VALUES (5, 2, "32413241", 2, 1, "Matsvei Chambers", "12411241", "77 Downsview Ave", "1980-02-11", "Software Engineer", "S");
+
+INSERT INTO Salaried_T (EmployeeID, SalariedSalary, SalariedBonus, SalariedHealthCoverage)
+VALUES (5, 80000, 5000, 10000);
+
+INSERT INTO Job_Archive_T (EmployeeID, JobTitle, JobDate)
+VALUES (5, "Software Engineer", "2014-05-15");
+
+INSERT INTO Employee_Skill_T (EmployeeID, SkillID)
+VALUES (5, 1);
+
+-- Department
 -- GBC Software
 INSERT INTO Department_T (DepartmentName, DepartmentPhoneNumber, DepartmentManager)
 VALUES("GBC Software", "905-351-4433", "John Doe");
@@ -119,6 +144,9 @@ VALUES (3, 3);
 
 INSERT INTO Employee_Task_T (EmployeeID, TaskID, EmployeeHoursWorked)
 VALUES (3, 3, 80);
+
+UPDATE Consultant_T SET ConsultantHoursWorked = ConsultantHoursWorked + 50
+WHERE EmployeeID = 3;
 
 -- Vendors
 -- Dell
