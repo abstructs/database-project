@@ -88,13 +88,15 @@ CONSTRAINT Task_Fk FOREIGN KEY(TaskID) REFERENCES Task_T(TaskID));
 
 CREATE TABLE Skill_T (
     SkillID             INTEGER         NOT NULL    UNIQUE,
-    SkillNumberID       VARCHAR(25)     NOT NULL    UNIQUE, -- "each skill is given a unique number"
+    SkillNumberID       CHAR(8)         NOT NULL    UNIQUE, -- "each skill is given a unique number"
+    SkillName           VARCHAR(25)     NOT NULL,
     SkillDescription    VARCHAR(150)    NOT NULL,
 
 CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 
 CREATE TABLE Project_T (
     ProjectID                       INTEGER          NOT NULL       UNIQUE,
+    ClientID                        INTEGER          NOT NULL,
     EmployeeProjectManagerID        INTEGER          NOT NULL,
     ProjectNumberID                 CHAR(8)          NOT NULL       UNIQUE,
     ProjectName                     VARCHAR(25)      NOT NULL,
