@@ -20,14 +20,14 @@ LEFT OUTER JOIN Task_T t
     ON t.ProjectID = p.ProjectID
 WHERE p.ProjectID = 1 AND EquipmentName LIKE 'HP%' AND TaskType LIKE 'Interface%';
 
-
+-- 2
 SELECT SUM(EquipmentCost) FROM Equipment_T e
 WHERE e.ProjectID = 2;
 
 -- 3 Order employees by birthday
 SELECT EmployeeName, EmployeeDateOfBirth FROM Employee_T ORDER BY EmployeeDateOfBirth;
 
--- 4 Group employees with birthdays greater than 1983
+-- 4 Group employees by skills
 SELECT SkillName, COUNT(SkillName) FROM Employee_Skill_T es
 INNER JOIN Employee_T se
     ON se.EmployeeID = es.EmployeeID
@@ -37,9 +37,9 @@ GROUP BY SkillName
 HAVING SkillName LIKE 'S%';
 
 -- 5 Create view to view department employees
-CREATE VIEW [Current Department Employees]
-    SELECT Current_Department_Employees AS
-    INNER JOIN DepartmentName, EmployeeName FROM Department_T d
+CREATE VIEW Current_Department_Employees AS
+    SELECT DepartmentName, EmployeeName, SkillName FROM Department_T d
+    INNER JOIN Employee_T e
         ON e.DepartmentID = d.DepartmentID
     WHERE d.DepartmentID = 2;
 
@@ -52,7 +52,7 @@ FULL OUTER JOIN Vendor_T v
 WHERE dv.VendorID = 1;
 
 -- 7
-SELECT EmployeeName, EmployeeJobTitle, SkillName, SkillDescription FROM Employee_Skill_T AS es
+SELECT EmployeeName, EmployeeJobTitle, SkillName, SkillDescription FROM Employee_Skill_T es
 INNER JOIN Skill_T s
     ON es.SkillID = s.SkillID
 INNER JOIN Employee_T e
@@ -78,5 +78,5 @@ SELECT EmployeeName, CASE EmployeeType
     WHEN 'S' THEN 'This is a salaried employee.'
     WHEN 'C' THEN 'This is a consultant.'
     ELSE 'This is neither a consultant or salaried employee'
-    END AS Employee Status
+    END AS EmployeeStatus
 FROM Employee_T;
