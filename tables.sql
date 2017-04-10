@@ -1,3 +1,38 @@
+CREATE TABLE Department_T (
+    DepartmentID            INTEGER,
+    DepartmentName          VARCHAR(25)    NOT NULL     UNIQUE,
+    DepartmentPhoneNumber   VARCHAR(15)    NOT NULL     UNIQUE,
+    DepartmentManager       VARCHAR(25)    NOT NULL     UNIQUE,
+
+CONSTRAINT Department_Pk PRIMARY KEY(DepartmentID));
+
+CREATE TABLE Client_T (
+    ClientID                   INTEGER,
+    ClientNumberID             CHAR(8)         NOT NULL    UNIQUE,
+    ClientCompany              VARCHAR(30)     NOT NULL,
+    ClientAddress              VARCHAR(30)     NOT NULL,
+    ClientContactPerson        VARCHAR(25)     NOT NULL,
+    ClientSince                DATE,
+CONSTRAINT Client_Pk PRIMARY KEY(ClientID));
+
+CREATE TABLE Project_T (
+    ProjectID                       INTEGER,
+    ProjectNumberID                 CHAR(8)          NOT NULL       UNIQUE,
+    ClientID                        INTEGER          NOT NULL,
+    ProjectManagerName              VARCHAR(25)      NOT NULL,
+    ProjectName                     VARCHAR(25)      NOT NULL,
+    StartDate                       DATE             NOT NULL,
+    FinishDate                      DATE             NOT NULL,
+CONSTRAINT Project_Pk PRIMARY KEY(ProjectID));
+
+CREATE TABLE Vendor_T(
+    VendorID              INTEGER,
+    VendorName            VARCHAR2(30)        NOT NULL,
+    VendorAddress         VARCHAR2(30),
+    VendorEquipmentInfo   VARCHAR2(40),
+
+CONSTRAINT Vendor_Pk PRIMARY KEY(VendorID));
+
 CREATE TABLE Employee_T(
     EmployeeID              INTEGER,
     DepartmentID            INTEGER         NOT NULL, -- Employee belongs to a department
@@ -42,13 +77,7 @@ CREATE TABLE Department_Location_T(
 
 CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID));
 
-CREATE TABLE Department_T (
-    DepartmentID            INTEGER,
-    DepartmentName          VARCHAR(25)    NOT NULL     UNIQUE,
-    DepartmentPhoneNumber   VARCHAR(15)    NOT NULL     UNIQUE,
-    DepartmentManager       VARCHAR(25)    NOT NULL     UNIQUE,
 
-CONSTRAINT Department_Pk PRIMARY KEY(DepartmentID));
 
 CREATE TABLE Task_T(
     TaskID              INTEGER,
@@ -94,17 +123,6 @@ CREATE TABLE Skill_T (
 
 CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 
-CREATE TABLE Project_T (
-    ProjectID                       INTEGER,
-    ClientID                        INTEGER          NOT NULL,
-    EmployeeProjectManagerID        INTEGER          NOT NULL,
-    ProjectNumberID                 CHAR(8)          NOT NULL       UNIQUE,
-    ProjectName                     VARCHAR(25)      NOT NULL,
-    StartDate                       DATE             NOT NULL,
-    FinishDate                      DATE             NOT NULL,
-CONSTRAINT Manager_Fk FOREIGN KEY(EmployeeProjectManagerID) REFERENCES Employee_T(EmployeeID),
-CONSTRAINT Project_Pk PRIMARY KEY(ProjectID));
-
 CREATE TABLE Project_Archive_T(
     ProjectID       INTEGER NOT NULL,
     ClientID        INTEGER NOT NULL,
@@ -113,14 +131,6 @@ CREATE TABLE Project_Archive_T(
 CONSTRAINT Project_Client_Pk PRIMARY KEY(ProjectID, ClientID),
 CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Client_Fk FOREIGN KEY(ClientID) REFERENCES Client_T(ClientID));
-
-CREATE TABLE Vendor_T(
-    VendorID              INTEGER,
-    VendorName            VARCHAR2(30)        NOT NULL,
-    VendorAddress         VARCHAR2(30),
-    VendorEquipmentInfo   VARCHAR2(40),
-
-CONSTRAINT Vendor_Pk PRIMARY KEY(VendorID));
 
 CREATE TABLE Equipment_T(
     EquipmentID             INTEGER,
@@ -133,15 +143,6 @@ CREATE TABLE Equipment_T(
 CONSTRAINT Vendor_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID),
 CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
-
-CREATE TABLE Client_T (
-    ClientID                   INTEGER,
-    ClientNumberID             CHAR(8)         NOT NULL    UNIQUE,
-    ClientCompany              VARCHAR(30)     NOT NULL,
-    ClientAddress              VARCHAR(30)     NOT NULL,
-    ClientContactPerson        VARCHAR(25)     NOT NULL,
-    ClientSince                DATE,
-CONSTRAINT Client_Pk PRIMARY KEY(ClientID));
 
 CREATE TABLE Salaried_T(
     EmployeeID                     INTEGER,
@@ -162,6 +163,6 @@ CREATE TABLE Department_Vendor_T(
     DepartmentID        INTEGER,
     VendorID            INTEGER,
 
-CONSTRAINT Department_Vendor_Pk PRIMARY KEY(DepartmentID,VendorID),
+CONSTRAINT Department_Vendor_Pk PRIMARY KEY(DepartmentID, VendorID),
 CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
 CONSTRAINT Vendor_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));

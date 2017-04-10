@@ -108,8 +108,8 @@ VALUES (1, "11111111", "Microsoft", "22 Valley", "Jarvis Claire", "2017-06-25");
 
 -- Project
 -- Create Database
-INSERT INTO Project_T (ProjectID, ClientID, EmployeeProjectManagerID, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (1, 1, 2, "12345678", "Create Datebase", "04-15-2017", "05-10-2017");
+INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
+VALUES (1, 1, "Bob Dylan", "12345678", "Create Datebase", "04-15-2017", "05-10-2017");
 
 INSERT INTO Project_Archive_T (ProjectID, ClientID, ArchivedDate)
 VALUES (1, 1, "05-10-2017");

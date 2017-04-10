@@ -11,9 +11,7 @@
 */
 
 -- 1 Project, project manager, project equipment and project task with interface design and a printer
-SELECT EmployeeName, TaskType, ProjectName, EquipmentName FROM Project_T AS p
-INNER JOIN Employee_T AS e
-    ON p.EmployeeProjectManagerID = e.EmployeeID
+SELECT ProjectManagerName, TaskType, ProjectName, EquipmentName FROM Project_T AS p
 INNER JOIN Client_T AS c
     ON p.ClientID = c.ClientID
 LEFT OUTER JOIN Equipment_T AS eq
