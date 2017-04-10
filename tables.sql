@@ -42,7 +42,7 @@ CREATE TABLE Employee_T(
     SkillID                 INTEGER,                  -- Employee can have a skill
     EmployeeName            VARCHAR(25)     NOT NULL,
     EmployeeAddress         VARCHAR(30),
-    EmployeeSIN             VARCHAR(11),
+    EmployeeSIN             VARCHAR(25),
     EmployeeDateOfBirth     DATE,
     EmployeeJobTitle        VARCHAR(30),
     EmployeeType            CHAR(1)         NOT NULL,   -- Determines type of employee  
@@ -72,9 +72,9 @@ CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(Employee
 CREATE TABLE Salaried_T(
     EmployeeID                      INTEGER,
     SalariedID                      INTEGER,
-    SalariedSalary                  NUMERIC(7,4),
-    SalariedBonus                   NUMERIC(7,4),  --calculated field
-    SalariedHealthCoverage          NUMERIC(7,4),  -- assumption
+    SalariedSalary                  NUMERIC(19, 4),
+    SalariedBonus                   NUMERIC(19, 4),  --calculated field
+    SalariedHealthCoverage          NUMERIC(19, 4),  -- assumption
 
 CONSTRAINT Salaried_Pk  PRIMARY KEY(SalariedID),
 CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
@@ -85,7 +85,7 @@ CREATE TABLE Dependent_T (
     DependentName       VARCHAR(25)     NOT NULL,
     DependentAddress    VARCHAR(30),
     DependentBirthday   DATE,
-    DependentSIN        VARCHAR(11),
+    DependentSIN        VARCHAR(25),
 
 CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID),
 CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_T(SalariedID));
@@ -156,7 +156,7 @@ CREATE TABLE Equipment_T(
     EquipmentID             INTEGER,
     VendorID                INTEGER     NOT NULL,
     ProjectID               INTEGER, -- Equipment belongs to project
-    EquipmentCost           NUMERIC(7, 4),
+    EquipmentCost           NUMERIC(19, 4),
     EquipmentName           VARCHAR(30),
     EquipmentDescription    VARCHAR(150),
 
