@@ -61,29 +61,33 @@ CONSTRAINT Job_Archive_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(Employee
 
 CREATE TABLE Consultant_T(
     EmployeeID                INTEGER,
+    ConsultantID              INTEGER,
     ConsultantHourlyRate      NUMERIC(4, 4)   NOT NULL,
     ConsultantHoursWorked     INTEGER         NOT NULL,
 
+CONSTRAINT Consultant_Pk  PRIMARY KEY(ConsultantID),
 CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Salaried_T(
-    EmployeeID                     INTEGER,
+    EmployeeID                      INTEGER,
+    SalariedID                      INTEGER,
     SalariedSalary                  NUMERIC(7,4),
     SalariedBonus                   NUMERIC(7,4),  --calculated field
     SalariedHealthCoverage          NUMERIC(7,4),  -- assumption
 
+CONSTRAINT Salaried_Pk  PRIMARY KEY(SalariedID),
 CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Dependent_T ( 
     DependentID         INTEGER,
-    SalariedID          INTEGER         NOT NULL, -- Dependent relies to employee
+    SalariedID          INTEGER, -- Dependent relies to employee
     DependentName       VARCHAR(25)     NOT NULL,
     DependentAddress    VARCHAR(30),
     DependentBirthday   DATE,
     DependentSIN        VARCHAR(11),
 
 CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID),
-CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_T(Salaried_Fk));
+CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_T(SalariedID));
 
 CREATE TABLE Department_Location_T(
     DepartmentID        INTEGER,
