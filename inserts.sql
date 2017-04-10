@@ -119,8 +119,8 @@ VALUES (4, 2, '31313131', 2, 3, 'William Lewis', '65656565', '33 Spadina Ave', '
 INSERT INTO Salaried_T (SalariedID, EmployeeID, SalariedSalary, SalariedBonus, SalariedHealthCoverage)
 VALUES (3, 4, 30000, 0, 2500);
 
-INSERT INTO Job_Archive_T (EmployeeID, JobTitle, JobDate)
-VALUES (4, 'UX Designer', '2017-01-05');
+INSERT INTO Job_Archive_T (Job_ArchiveID, EmployeeID, JobTitle, JobDate)
+VALUES (4, 4, 'UX Designer', '2017-01-05');
 
 INSERT INTO Employee_Skill_T (Employee_SkillID, EmployeeID, SkillID)
 VALUES (4, 4, 3);
