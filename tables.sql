@@ -53,10 +53,11 @@ CONSTRAINT Employee_Fk1 FOREIGN KEY(DepartmentID) REFERENCES Department_T(Depart
 CONSTRAINT Employee_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
 CREATE TABLE Job_Archive_T( -- Stores the job titles of an employee
+    ArchiveID   INTEGER,
     EmployeeID  INTEGER         NOT NULL,
     JobTitle    VARCHAR(25)     NOT NULL,
     JobDate     DATE            NOT NULL,
-
+CONSTRAINT Job_Archive_PK PRIMARY KEY(ArchiveID),
 CONSTRAINT Job_Archive_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Consultant_T(
@@ -90,10 +91,12 @@ CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID),
 CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_T(SalariedID));
 
 CREATE TABLE Department_Location_T(
-    DepartmentID        INTEGER,
-    DepartmentFloor     CHAR(1)     NOT NULL    UNIQUE,
-    DepartmentRoom      CHAR(3)     NOT NULL    UNIQUE,
+    Department_LocationID   INTEGER,
+    DepartmentID            INTEGER,
+    DepartmentFloor         CHAR(1)     NOT NULL    UNIQUE,
+    DepartmentRoom          CHAR(3)     NOT NULL    UNIQUE,
 
+CONSTRAINT Department_Location_Pk PRIMARY KEY(Department_LocationID),
 CONSTRAINT Department_Location_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID));
 
 CREATE TABLE Task_T(

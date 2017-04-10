@@ -15,10 +15,10 @@ VALUES (2, 'HP', '57 Spadina', 'Supplying printers for project');
 -- Project
 -- Create Database
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (1, 1, 'Bob Dylan', '12345678', 'Create Datebase', '04-15-2017', '05-10-2017');
+VALUES (1, 1, 'Bob Dylan', '12345678', 'Create Datebase', '2016-04-15', '2017-05-10');
 
 INSERT INTO Project_Archive_T (ProjectID, ClientID, ArchivedDate)
-VALUES (1, 1, '05-10-2017');
+VALUES (1, 1, '2016-04-10');
 
 -- Equipment
 -- XPS Laptop
