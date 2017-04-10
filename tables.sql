@@ -36,15 +36,15 @@ CONSTRAINT Vendor_Pk PRIMARY KEY(VendorID));
 CREATE TABLE Employee_T(
     EmployeeID              INTEGER,
     DepartmentID            INTEGER         NOT NULL, -- Employee belongs to a department
-    EmployeeNumberID        CHAR(8)         NOT NULL    UNIQUE,
+    EmployeeNumberID        CHAR(17)         NOT NULL    UNIQUE,
     EmployeeSpouseID        INTEGER,
     ProjectID               INTEGER,                  -- Employee takes on a project
     SkillID                 INTEGER,                  -- Employee can have a skill
-    EmployeeName            VARCHAR(25)     NOT NULL,
-    EmployeeAddress         VARCHAR(30),
+    EmployeeName            VARCHAR(50)     NOT NULL,
+    EmployeeAddress         VARCHAR(50),
     EmployeeSIN             VARCHAR(25),
     EmployeeDateOfBirth     DATE,
-    EmployeeJobTitle        VARCHAR(30),
+    EmployeeJobTitle        VARCHAR(45),
     EmployeeType            CHAR(1)         NOT NULL,   -- Determines type of employee  
 
 CONSTRAINT Employee_Fk FOREIGN KEY(EmployeeSpouseID) REFERENCES Employee_T(EmployeeID),
@@ -55,7 +55,7 @@ CONSTRAINT Employee_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 CREATE TABLE Job_Archive_T( -- Stores the job titles of an employee
     ArchiveID   INTEGER,
     EmployeeID  INTEGER         NOT NULL,
-    JobTitle    VARCHAR(25)     NOT NULL,
+    JobTitle    VARCHAR(45)     NOT NULL,
     JobDate     DATE            NOT NULL,
 CONSTRAINT Job_Archive_PK PRIMARY KEY(ArchiveID),
 CONSTRAINT Job_Archive_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
@@ -63,7 +63,7 @@ CONSTRAINT Job_Archive_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(Employee
 CREATE TABLE Consultant_T(
     EmployeeID                INTEGER,
     ConsultantID              INTEGER,
-    ConsultantHourlyRate      NUMERIC(4, 4)   NOT NULL,
+    ConsultantHourlyRate      NUMERIC(19, 4)  NOT NULL,
     ConsultantHoursWorked     INTEGER         NOT NULL,
 
 CONSTRAINT Consultant_Pk  PRIMARY KEY(ConsultantID),
@@ -82,8 +82,8 @@ CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID
 CREATE TABLE Dependent_T ( 
     DependentID         INTEGER,
     SalariedID          INTEGER, -- Dependent relies to employee
-    DependentName       VARCHAR(25)     NOT NULL,
-    DependentAddress    VARCHAR(30),
+    DependentName       VARCHAR(50)     NOT NULL,
+    DependentAddress    VARCHAR(50),
     DependentBirthday   DATE,
     DependentSIN        VARCHAR(25),
 
@@ -102,7 +102,7 @@ CONSTRAINT Department_Location_Fk FOREIGN KEY(DepartmentID) REFERENCES Departmen
 CREATE TABLE Task_T(
     TaskID              INTEGER,
     ProjectID           INTEGER         NOT NULL, -- Task belongs to project
-    TaskType            VARCHAR(30)     NOT NULL,
+    TaskType            VARCHAR(50)     NOT NULL,
     TaskDescription     VARCHAR(150)    NOT NULL,
     TaskStartDate       DATE            NOT NULL,
     TaskEndDate         DATE            NOT NULL,
@@ -112,8 +112,8 @@ CONSTRAINT Task_Pk PRIMARY KEY(TaskID));
 
 CREATE TABLE Skill_T (
     SkillID             INTEGER,
-    SkillNumberID       CHAR(8)         NOT NULL    UNIQUE, -- "each skill is given a unique number"
-    SkillName           VARCHAR(25)     NOT NULL,
+    SkillNumberID       CHAR(17)         NOT NULL    UNIQUE, -- "each skill is given a unique number"
+    SkillName           VARCHAR(50)     NOT NULL,
     SkillDescription    VARCHAR(150)    NOT NULL,
 
 CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
@@ -157,7 +157,7 @@ CREATE TABLE Equipment_T(
     VendorID                INTEGER     NOT NULL,
     ProjectID               INTEGER, -- Equipment belongs to project
     EquipmentCost           NUMERIC(19, 4),
-    EquipmentName           VARCHAR(30),
+    EquipmentName           VARCHAR(50),
     EquipmentDescription    VARCHAR(150),
 
 CONSTRAINT Equipment_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID),

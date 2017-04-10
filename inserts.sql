@@ -22,16 +22,16 @@ VALUES (1, 1, '2016-04-10');
 
 -- Equipment
 -- XPS Laptop
-INSERT INTO Equipment_T (VendorID, ProjectID, EquipmentCost, EquipmentName, EquipmentDescription)
-VALUES (1, 1, 5000.00, 'XPS Laptops', 'Laptops required for writing software on.');
+INSERT INTO Equipment_T (EquipmentID, VendorID, ProjectID, EquipmentCost, EquipmentName, EquipmentDescription)
+VALUES (1, 1, 1, 5000.00, 'XPS Laptops', 'Laptops required for writing software on.');
 
-INSERT INTO Equipment_T (VendorID, ProjectID, EquipmentCost, EquipmentName, EquipmentDescription)
-VALUES (2, 1, 1000.00, 'HP Printers', 'Printers required for printing diagrams');
+INSERT INTO Equipment_T (EquipmentID, VendorID, ProjectID, EquipmentCost, EquipmentName, EquipmentDescription)
+VALUES (2, 2, 1, 1000.00, 'HP Printers', 'Printers required for printing diagrams');
 
 -- Department
 -- GBC Software
-INSERT INTO Department_T (DepartmentName, DepartmentPhoneNumber, DepartmentManager)
-VALUES('GBC Software', '905-351-4433', 'John Doe');
+INSERT INTO Department_T (DepartmentID, DepartmentName, DepartmentPhoneNumber, DepartmentManager)
+VALUES(1, 'GBC Software', '905-351-4433', 'John Doe');
 
 INSERT INTO Department_Location_T (DepartmentID, DepartmentFloor, DepartmentRoom)
 VALUES (1, '2', '212');
@@ -40,8 +40,8 @@ INSERT INTO Department_Vendor_T (DepartmentID, VendorID)
 VALUES (1, 1);
 
 -- GBC Design
-INSERT INTO Department_T (DepartmentName, DepartmentPhoneNumber, DepartmentManager)
-VALUES('GBC Design', '905-451-4433', 'Bob Dylan');
+INSERT INTO Department_T (DepartmentID, DepartmentName, DepartmentPhoneNumber, DepartmentManager)
+VALUES(2, 'GBC Design', '905-451-4433', 'Bob Dylan');
 
 INSERT INTO Department_Location_T (DepartmentID, DepartmentFloor, DepartmentRoom)
 VALUES (2, '3', '312');
