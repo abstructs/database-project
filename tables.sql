@@ -83,7 +83,7 @@ CREATE TABLE Dependent_T (
     DependentSIN        VARCHAR(11),
 
 CONSTRAINT Dependent_Pk PRIMARY KEY(DependentID),
-CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_Fk);
+CONSTRAINT Dependent_Fk FOREIGN KEY(SalariedID) REFERENCES Salaried_T(Salaried_Fk));
 
 CREATE TABLE Department_Location_T(
     DepartmentID        INTEGER,
