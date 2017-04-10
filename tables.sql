@@ -47,7 +47,6 @@ CREATE TABLE Employee_T(
     EmployeeJobTitle        VARCHAR(45),
     EmployeeType            CHAR(1)         NOT NULL,   -- Determines type of employee  
 
-CONSTRAINT Employee_Fk FOREIGN KEY(EmployeeSpouseID) REFERENCES Employee_T(EmployeeID),
 CONSTRAINT Employee_Pk PRIMARY KEY(EmployeeID),
 CONSTRAINT Employee_Fk1 FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
 CONSTRAINT Employee_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
