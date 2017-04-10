@@ -49,6 +49,16 @@ VALUES (2, 2, '3', '312');
 INSERT INTO Department_Vendor_T (Department_VendorID, DepartmentID, VendorID)
 VALUES (2, 2, 2);
 
+-- Skills
+INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
+VALUES (1, '12345678', 'Software Development', 'Software developers make software.');
+
+INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
+VALUES (2, '12341234', 'Database Management', 'Database managers manage databases.');
+
+INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
+VALUES (3, '44444444', 'User Experience', 'User experience people create software that is enjoyable to use.');
+
 -- Employee
 -- Daniela Doe
 INSERT INTO Employee_T (EmployeeID, DepartmentID, EmployeeNumberID, EmployeeSpouseID, ProjectID, SkillID, EmployeeName, EmployeeAddress, EmployeeSIN, EmployeeDateOfBirth, EmployeeJobTitle, EmployeeType) 
@@ -60,9 +70,6 @@ VALUES (1, 1, 49999.99, 5000);
 INSERT INTO Job_Archive_T (Job_ArchiveID, EmployeeID, JobTitle, JobDate)
 VALUES (1, 1, 'Software Engineer', '2015-03-09');
 
-INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
-VALUES (1, '12345678', 'Software Development', 'Software developers make software.');
-
 INSERT INTO Employee_Skill_T (Employee_SkillID, EmployeeID, SkillID)
 VALUES (1, 1, 1);
 
@@ -73,6 +80,7 @@ INSERT INTO Dependent_T (DependentID, SalariedID, DependentName, DependentAddres
 VALUES (2, 1, 'Daniel Doe', '26 St Claire West', '2002-06-17', '90874321');
 
 -- John Doe
+
 INSERT INTO Employee_T (EmployeeID, DepartmentID, EmployeeNumberID, EmployeeSpouseID, ProjectID, SkillID, EmployeeName, EmployeeAddress, EmployeeSIN, EmployeeDateOfBirth, EmployeeJobTitle, EmployeeType) 
 VALUES (2, 1, '12312312', 1, 1, 2, 'John Doe', '32132132','26 St Claire West', '1987-05-23', 'Database Manager', 'S');
 
@@ -81,9 +89,6 @@ VALUES (2, 2, 44999.99, 5000);
 
 INSERT INTO Job_Archive_T (Job_ArchiveID, EmployeeID, JobTitle, JobDate)
 VALUES (2, 2, 'Database Management', '2015-02-13');
-
-INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
-VALUES (2, '12341234', 'Database Management', 'Database managers manage databases.');
 
 INSERT INTO Employee_Skill_T (Employee_SkillID, EmployeeID, SkillID)
 VALUES (2, 2, 2);
@@ -97,9 +102,6 @@ VALUES (1, 3, 47.00, 0);
 
 INSERT INTO Job_Archive_T (Job_ArchiveID, EmployeeID, JobTitle, JobDate)
 VALUES (3, 3, 'UX Designer', '2016-01-05');
-
-INSERT INTO Skill_T (SkillID, SkillNumberID, SkillName, SkillDescription)
-VALUES (3, '44444444', 'User Experience', 'User experience people create software that is enjoyable to use.');
 
 INSERT INTO Employee_Skill_T (Employee_SkillID, EmployeeID, SkillID)
 VALUES (3, 3, 3);
