@@ -103,6 +103,14 @@ CREATE TABLE Task_T(
 CONSTRAINT Task_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Task_Pk PRIMARY KEY(TaskID));
 
+CREATE TABLE Skill_T (
+    SkillID             INTEGER,
+    SkillNumberID       CHAR(8)         NOT NULL    UNIQUE, -- "each skill is given a unique number"
+    SkillName           VARCHAR(25)     NOT NULL,
+    SkillDescription    VARCHAR(150)    NOT NULL,
+
+CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
+
 CREATE TABLE Task_Skill_T( -- Task can take multiple skills to complete, skills can belong to multiple tasks
     TaskID        INTEGER,
     SkillID       INTEGER,
@@ -127,14 +135,6 @@ CREATE TABLE Employee_Task_T(
 CONSTRAINT Employee_Task_Pk PRIMARY KEY(EmployeeID, TaskID),
 CONSTRAINT Employee_Task_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID),
 CONSTRAINT Employee_Task_Fk1 FOREIGN KEY(TaskID) REFERENCES Task_T(TaskID));
-
-CREATE TABLE Skill_T (
-    SkillID             INTEGER,
-    SkillNumberID       CHAR(8)         NOT NULL    UNIQUE, -- "each skill is given a unique number"
-    SkillName           VARCHAR(25)     NOT NULL,
-    SkillDescription    VARCHAR(150)    NOT NULL,
-
-CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 
 CREATE TABLE Project_Archive_T(
     ProjectID       INTEGER NOT NULL,
