@@ -59,6 +59,21 @@ CREATE TABLE Job_Archive_T( -- Stores the job titles of an employee
 
 CONSTRAINT Employee_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
+CREATE TABLE Consultant_T(
+    EmployeeID                INTEGER,
+    ConsultantHourlyRate      NUMERIC(4, 4)   NOT NULL,
+    ConsultantHoursWorked     INTEGER         NOT NULL,
+
+CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
+
+CREATE TABLE Salaried_T(
+    EmployeeID                     INTEGER,
+    SalariedSalary                  NUMERIC(7,4),
+    SalariedBonus                   NUMERIC(7,4),  --calculated field
+    SalariedHealthCoverage          NUMERIC(7,4),  -- assumption
+
+CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
+
 CREATE TABLE Dependent_T ( 
     DependentID         INTEGER,
     SalariedID          INTEGER         NOT NULL, -- Dependent relies to employee
@@ -76,8 +91,6 @@ CREATE TABLE Department_Location_T(
     DepartmentRoom      CHAR(3)     NOT NULL    UNIQUE,
 
 CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID));
-
-
 
 CREATE TABLE Task_T(
     TaskID              INTEGER,
@@ -143,21 +156,6 @@ CREATE TABLE Equipment_T(
 CONSTRAINT Vendor_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID),
 CONSTRAINT Project_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
-
-CREATE TABLE Salaried_T(
-    EmployeeID                     INTEGER,
-    SalariedSalary                  NUMERIC(7,4),
-    SalariedBonus                   NUMERIC(7,4),  --calculated field
-    SalariedHealthCoverage          NUMERIC(7,4),  -- assumption
-
-CONSTRAINT Salaried_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
-
-CREATE TABLE Consultant_T(
-    EmployeeID                INTEGER,
-    ConsultantHourlyRate      NUMERIC(4, 4)   NOT NULL,
-    ConsultantHoursWorked     INTEGER         NOT NULL,
-
-CONSTRAINT Consultant_Fk  FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Department_Vendor_T(
     DepartmentID        INTEGER,
