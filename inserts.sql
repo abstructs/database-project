@@ -17,8 +17,8 @@ VALUES (2, 'HP', '57 Spadina', 'Supplying printers for project');
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
 VALUES (1, 1, 'Bob Dylan', '12345678', 'Create Datebase', '2016-04-15', '2017-05-10');
 
-INSERT INTO Project_Archive_T (ProjectID, ClientID, ArchivedDate)
-VALUES (1, 1, '2016-04-10');
+INSERT INTO Project_Archive_T (Project_ArchiveID, ProjectID, ClientID, ArchivedDate)
+VALUES (1, 1, 1, '2016-04-10');
 
 -- Equipment
 -- XPS Laptop
@@ -46,7 +46,7 @@ VALUES(2, 'GBC Design', '905-451-4433', 'Bob Dylan');
 INSERT INTO Department_Location_T (Department_LocationID, DepartmentID, DepartmentFloor, DepartmentRoom)
 VALUES (2, 2, '3', '312');
 
-INSERT INTO Department_Vendor_T (Department_Vendor_ID, DepartmentID, VendorID)
+INSERT INTO Department_Vendor_T (Department_VendorID, DepartmentID, VendorID)
 VALUES (2, 2, 2);
 
 -- Employee
