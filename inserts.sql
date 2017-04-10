@@ -33,8 +33,8 @@ VALUES (2, 2, 1, 1000.00, 'HP Printers', 'Printers required for printing diagram
 INSERT INTO Department_T (DepartmentID, DepartmentName, DepartmentPhoneNumber, DepartmentManager)
 VALUES(1, 'GBC Software', '905-351-4433', 'John Doe');
 
-INSERT INTO Department_Location_T (DepartmentID, DepartmentFloor, DepartmentRoom)
-VALUES (1, '2', '212');
+INSERT INTO Department_Location_T (Department_LocationID, DepartmentID, DepartmentFloor, DepartmentRoom)
+VALUES (1, 1, '2', '212');
 
 INSERT INTO Department_Vendor_T (DepartmentID, VendorID)
 VALUES (1, 1);
@@ -43,8 +43,8 @@ VALUES (1, 1);
 INSERT INTO Department_T (DepartmentID, DepartmentName, DepartmentPhoneNumber, DepartmentManager)
 VALUES(2, 'GBC Design', '905-451-4433', 'Bob Dylan');
 
-INSERT INTO Department_Location_T (DepartmentID, DepartmentFloor, DepartmentRoom)
-VALUES (2, '3', '312');
+INSERT INTO Department_Location_T (Department_LocationID, DepartmentID, DepartmentFloor, DepartmentRoom)
+VALUES (2, 2, '3', '312');
 
 INSERT INTO Department_Vendor_T (DepartmentID, VendorID)
 VALUES (2, 2);
