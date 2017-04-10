@@ -52,11 +52,11 @@ CONSTRAINT Employee_Fk1 FOREIGN KEY(DepartmentID) REFERENCES Department_T(Depart
 CONSTRAINT Employee_Fk2 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID));
 
 CREATE TABLE Job_Archive_T( -- Stores the job titles of an employee
-    ArchiveID   INTEGER,
+    Job_ArchiveID   INTEGER,
     EmployeeID  INTEGER         NOT NULL,
     JobTitle    VARCHAR(45)     NOT NULL,
     JobDate     DATE            NOT NULL,
-CONSTRAINT Job_Archive_PK PRIMARY KEY(ArchiveID),
+CONSTRAINT Job_Archive_PK PRIMARY KEY(Job_ArchiveID),
 CONSTRAINT Job_Archive_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID));
 
 CREATE TABLE Consultant_T(
@@ -118,36 +118,40 @@ CREATE TABLE Skill_T (
 CONSTRAINT Skill_Pk PRIMARY KEY(SkillID));
 
 CREATE TABLE Task_Skill_T( -- Task can take multiple skills to complete, skills can belong to multiple tasks
+    Task_SkillID  INTEGER,
     TaskID        INTEGER,
     SkillID       INTEGER,
 
-CONSTRAINT Task_Skill_Pk PRIMARY KEY(TaskID, SkillID),
+CONSTRAINT Task_Skill_Pk PRIMARY KEY(Task_SkillID),
 CONSTRAINT Task_Skill_Fk FOREIGN KEY(TaskID) REFERENCES Task_T(TaskID),
 CONSTRAINT Task_Skill_Fk1 FOREIGN KEY(SkillID) REFERENCES Skill_T(SkillID));
 
 CREATE TABLE Employee_Skill_T( -- Task can take multiple skills to complete, skills can belong to multiple tasks
-    EmployeeID    INTEGER,
-    SkillID       INTEGER,
+    Employee_SkillID INTEGER,
+    EmployeeID      INTEGER,
+    SkillID         INTEGER,
 
-CONSTRAINT Employee_Skill_Pk PRIMARY KEY(EmployeeID, SkillID),
+CONSTRAINT Employee_Skill_Pk PRIMARY KEY(Employee_SkillID),
 CONSTRAINT Employee_Skill_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID),
 CONSTRAINT Employee_Skill_Fk1 FOREIGN KEY(SkillID) REFERENCES Skill_T(SkillID));
 
 CREATE TABLE Employee_Task_T(
+    Employee_TaskID         INTEGER,
     EmployeeID              INTEGER,
     TaskID                  INTEGER,
     EmployeeHoursWorked     INTEGER,
     
-CONSTRAINT Employee_Task_Pk PRIMARY KEY(EmployeeID, TaskID),
+CONSTRAINT Employee_Task_Pk PRIMARY KEY(Employee_TaskID),
 CONSTRAINT Employee_Task_Fk FOREIGN KEY(EmployeeID) REFERENCES Employee_T(EmployeeID),
 CONSTRAINT Employee_Task_Fk1 FOREIGN KEY(TaskID) REFERENCES Task_T(TaskID));
 
 CREATE TABLE Project_Archive_T(
-    ProjectID       INTEGER NOT NULL,
-    ClientID        INTEGER NOT NULL,
-    ArchivedDate    DATE NOT NULL,
+    Project_ArchiveID   INTEGER,
+    ProjectID           INTEGER NOT NULL,
+    ClientID            INTEGER NOT NULL,
+    ArchivedDate        DATE NOT NULL,
 
-CONSTRAINT Project_Client_Pk PRIMARY KEY(ProjectID, ClientID),
+CONSTRAINT Project_Client_Pk PRIMARY KEY(Project_ArchiveID),
 CONSTRAINT Project_Client_Fk FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Project_Client_Fk1 FOREIGN KEY(ClientID) REFERENCES Client_T(ClientID));
 
@@ -164,9 +168,10 @@ CONSTRAINT Equipment_Fk1 FOREIGN KEY(ProjectID) REFERENCES Project_T(ProjectID),
 CONSTRAINT Equipment_Pk PRIMARY KEY(EquipmentID));
 
 CREATE TABLE Department_Vendor_T(
+    Department_VendorID INTEGER,
     DepartmentID        INTEGER,
     VendorID            INTEGER,
 
-CONSTRAINT Department_Vendor_Pk PRIMARY KEY(DepartmentID, VendorID),
+CONSTRAINT Department_Vendor_Pk PRIMARY KEY(Department_VendorID),
 CONSTRAINT Department_Vendor_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
 CONSTRAINT Department_Vendor_Fk1 FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));
