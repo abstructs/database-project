@@ -36,8 +36,8 @@ VALUES(1, 'GBC Software', '905-351-4433', 'John Doe');
 INSERT INTO Department_Location_T (Department_LocationID, DepartmentID, DepartmentFloor, DepartmentRoom)
 VALUES (1, 1, '2', '212');
 
-INSERT INTO Department_Vendor_T (DepartmentID, VendorID)
-VALUES (1, 1);
+INSERT INTO Department_Vendor_T (Department_VendorID, DepartmentID, VendorID)
+VALUES (1, 1, 1);
 
 -- GBC Design
 INSERT INTO Department_T (DepartmentID, DepartmentName, DepartmentPhoneNumber, DepartmentManager)
@@ -46,8 +46,8 @@ VALUES(2, 'GBC Design', '905-451-4433', 'Bob Dylan');
 INSERT INTO Department_Location_T (Department_LocationID, DepartmentID, DepartmentFloor, DepartmentRoom)
 VALUES (2, 2, '3', '312');
 
-INSERT INTO Department_Vendor_T (DepartmentID, VendorID)
-VALUES (2, 2);
+INSERT INTO Department_Vendor_T (Department_Vendor_ID, DepartmentID, VendorID)
+VALUES (2, 2, 2);
 
 -- Employee
 -- Daniela Doe
@@ -129,8 +129,6 @@ VALUES (5, 5, 'Software Engineer', '2014-05-15');
 
 INSERT INTO Employee_Skill_T (Employee_SkillID, EmployeeID, SkillID)
 VALUES (5, 5, 1);
-
-
 
 -- Tasks
 -- Database creation
