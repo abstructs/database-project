@@ -20,6 +20,12 @@ VALUES (1, 1, 'Bob Dylan', '12345678', 'Create Datebase', '2016-04-15', '2017-05
 INSERT INTO Project_Archive_T (Project_ArchiveID, ProjectID, ClientID, ArchivedDate)
 VALUES (1, 1, 1, '2016-04-10');
 
+INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
+VALUES (2, 1, 'William Lewis', '32324141', 'Create Software', '2015-07-15', '2017-02-10');
+
+INSERT INTO Project_Archive_T (Project_ArchiveID, ProjectID, ClientID, ArchivedDate)
+VALUES (2, 2, 1, '2015-07-15');
+
 -- Equipment
 -- XPS Laptop
 INSERT INTO Equipment_T (EquipmentID, VendorID, ProjectID, EquipmentCost, EquipmentName, EquipmentDescription)
