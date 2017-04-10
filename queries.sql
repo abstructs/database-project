@@ -59,3 +59,32 @@ FULL OUTER JOIN Department_T AS d
 FULL OUTER JOIN Vendor_T AS v
     ON v.VendorID = v.VendorID
 WHERE dv.VendorID = 1;
+
+-- 7
+SELECT EmployeeName, EmployeeJobTitle, SkillName, SkillDescription FROM Employee_Skill_T AS es
+INNER JOIN Skill_T AS s
+    ON es.SkillID = s.SkillID
+INNER JOIN Employee_T AS e
+    on es.EmployeeID = e.EmployeeID
+WHERE es.EmployeeID = (
+    SELECT EmployeeID FROM Employee_T
+    WHERE EmployeeName LIKE "Bob%"
+);
+
+-- 8 Gets an employee and employee's co-workers
+SELECT DepartmentName, a.EmployeeName, b.EmployeeName FROM Employee_T AS a, Employee_T AS b
+INNER JOIN Department_T AS d
+WHERE a.DepartmentID = b.DepartmentID 
+AND a.DepartmentID = 2 
+AND a.EmployeeID <> b.EmployeeID
+AND d.DepartmentID = 2
+ORDER BY A.EmployeeDateOfBirth DESC;
+
+-- 9
+SELECT EmployeeName, CASE EmployeeType
+    WHEN "S" THEN "This is a salaried employee."
+    WHEN "C" THEN "This is a consultant."
+    ELSE "This is neither a consultant or salaried employee"
+    END
+    "Employee Status"
+FROM Employee_T;

@@ -165,24 +165,3 @@ CREATE TABLE Department_Vendor_T(
 CONSTRAINT Department_Vendor_Pk PRIMARY KEY(DepartmentID,VendorID),
 CONSTRAINT Department_Fk FOREIGN KEY(DepartmentID) REFERENCES Department_T(DepartmentID),
 CONSTRAINT Vendor_Fk FOREIGN KEY(VendorID) REFERENCES Vendor_T(VendorID));
-
-
-
-/*
-COMMENTS
-*we need an attribute in salary table to record whether an individual has dependants, either a yes or no or numbers. 
-^ UPDATE: Use dependents table to check for employee ID
-
-*department_vendor table could be another query,instead we can have FOREIGN KEY from the other table in Department table and In the Vendor table then draw a query from there 
-^ UPDATE: Deparments to Vendors is a many to many relationship
-
-*Archived info should be based on a query which then translates to a "report"
-^ UPDATE: Created archive table
-
-*lets add a timestap to the project to record changes/alterations to records
-^ UPDATE Project has started and finishing dates
-
-*we need a FOREIGN KEY for department in employee table so as to link employee to department
-^ UPDATE: Added department FK in employee
-
-*/
