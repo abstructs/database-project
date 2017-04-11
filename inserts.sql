@@ -38,16 +38,16 @@ INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID,
 VALUES (1, 1, 'Bob Dylan', '12345678', 'Create Database', '2016-04-15', '2017-05-10');
 
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (2, 1, 'William Lewis', '32324141', 'Create Software', '2015-07-15', '2017-02-10');
+VALUES (2, 2, 'William Lewis', '32324141', 'Create Software', '2015-07-15', '2017-02-10');
 
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (3, 2, 'TO BE ANNOUNCED', '33333333', 'Work on robot', '2016-03-05', '2017-02-15');
+VALUES (3, 3, 'TO BE ANNOUNCED', '33333333', 'Work on robot', '2016-03-05', '2017-02-15');
 
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (4, 3, 'TO BE ANNOUNCED', '44444444', 'Work on hardware', '2015-01-25', '2016-08-03');
+VALUES (4, 4, 'TO BE ANNOUNCED', '44444444', 'Work on hardware', '2015-01-25', '2016-08-03');
 
 INSERT INTO Project_T (ProjectID, ClientID, ProjectManagerName, ProjectNumberID, ProjectName, StartDate, FinishDate)
-VALUES (5, 5, 'TO BE ANNOUNCED', '555555555', 'Supply IT Training', '2014-01-25', '2015-02-03');
+VALUES (5, 5, 'TO BE ANNOUNCED', '55555555', 'Supply IT Training', '2014-01-25', '2015-02-03');
 
 -- Project Archive
 INSERT INTO Project_Archive_T (Project_ArchiveID, ProjectID, ClientID, ArchivedDate)
