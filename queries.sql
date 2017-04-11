@@ -22,7 +22,7 @@ WHERE p.ProjectID = 1 AND EquipmentName LIKE 'HP%' AND TaskType LIKE 'Interface%
 
 -- 2
 SELECT SUM(EquipmentCost) FROM Equipment_T e
-WHERE e.ProjectID = 2;
+WHERE e.ProjectID = 1;
 
 -- 3 Order employees by birthday
 SELECT EmployeeName, EmployeeDateOfBirth FROM Employee_T ORDER BY EmployeeDateOfBirth;
