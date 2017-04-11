@@ -38,7 +38,7 @@ HAVING SkillName LIKE 'S%';
 
 -- 5 Create view to view department employees
 CREATE VIEW Current_Department_Employees AS
-    SELECT DepartmentName, EmployeeName, SkillName FROM Department_T d
+    SELECT DepartmentName, EmployeeName FROM Department_T d
     INNER JOIN Employee_T e
         ON e.DepartmentID = d.DepartmentID
     WHERE d.DepartmentID = 2;
@@ -67,6 +67,7 @@ SELECT DepartmentName, a.EmployeeName, b.EmployeeName FROM Employee_T a
 INNER JOIN Employee_T b
     ON a.DepartmentID = b.DepartmentID
 INNER JOIN Department_T d
+    ON a.DepartmentID = d.DepartmentID
 WHERE a.DepartmentID = b.DepartmentID 
     AND a.DepartmentID = 2 
     AND a.EmployeeID <> b.EmployeeID
